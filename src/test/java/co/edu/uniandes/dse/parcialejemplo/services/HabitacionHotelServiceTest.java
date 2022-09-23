@@ -31,11 +31,11 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 @Transactional
-@Import(HotelService.class)
-class HotelServiceTest {
+@Import(HabitacionHotelService.class)
+class HabitacionHotelServiceTest {
 
 	@Autowired
-	private HotelService hotelService;
+	private HabitacionHotelService habitacionhotelService;
 
 	@Autowired
 	private TestEntityManager entityManager;
@@ -89,13 +89,7 @@ class HotelServiceTest {
 	 * @throws EntityNotFoundException, IllegalOperationException
 	 */
 	@Test
-	void testCreateHotel() throws EntityNotFoundException, IllegalOperationException {
-		HotelEntity newEntity = factory.manufacturePojo(HotelEntity.class);
-		HotelEntity result = hotelService.createHotel(newEntity);
-		assertNotNull(result);
-
-		HotelEntity entity = entityManager.find(HotelEntity.class, result.getId());
-		assertEquals(newEntity.getId(), entity.getId());
-		assertEquals(newEntity.getNombre(), entity.getNombre());
+	void testAddHabitaciones() throws EntityNotFoundException, IllegalOperationException {
+	
 	}
 }
