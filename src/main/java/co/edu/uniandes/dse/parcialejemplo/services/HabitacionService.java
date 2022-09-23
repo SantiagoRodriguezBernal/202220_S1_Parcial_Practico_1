@@ -41,11 +41,15 @@ public class HabitacionService {
 	@Transactional
 	public HabitacionesEntity createHabitacion(HabitacionesEntity habitacionesEntity) throws IllegalOperationException {
 		log.info("Inicia proceso de creación de una habitacion");
+		if (habitacionesEntity.getHotel() == null)
+		throw new IllegalOperationException("Hotel is not valid");
 	
-        if ((habitacionesEntity.getIdentificacion()))
-			throw new IllegalOperationException("Estrellas is not valid");
+	List<HotelEntity> hotelEntity = hotelRepository.findById(habitacionesEntity.getHotel().getId());
+	if (hotelEntity.isEmpty())
+		throw new IllegalOperationException("Editorial is not valid");
+   
 		log.info("Termina proceso de creación del hotel");
-		return hotelRepository.save(hotelEntity);
+		return habitacionRepository.save(habitacionesEntity);
 	}
 
 
